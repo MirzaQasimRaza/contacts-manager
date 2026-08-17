@@ -29,11 +29,14 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
+          cache-dependency-path: contact-manager/package-lock.json
 
       - name: Install dependencies
+        working-directory: ./contact-manager
         run: npm ci
 
       - name: Build
+        working-directory: ./contact-manager
         run: npm run build
 
       - name: Setup Pages
@@ -42,7 +45,7 @@ jobs:
       - name: Upload build
         uses: actions/upload-pages-artifact@v5
         with:
-          path: ./dist
+          path: ./contact-manager/dist
 
       - name: Deploy
         id: deployment
